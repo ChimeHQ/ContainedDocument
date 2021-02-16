@@ -8,10 +8,10 @@
 
 import Cocoa
 
-class ContainedDocumentController<Container>: BaseDocumentController {
+open class ContainedDocumentController<Container>: BaseDocumentController {
     private var activeContainer: Container?
     
-    override func makeDocument(withContentsOf url: URL, ofType typeName: String) throws -> NSDocument {
+    open override func makeDocument(withContentsOf url: URL, ofType typeName: String) throws -> NSDocument {
         let doc = try super.makeDocument(withContentsOf: url, ofType: typeName)
         
         associateActiveContainer(to: doc)
@@ -19,7 +19,7 @@ class ContainedDocumentController<Container>: BaseDocumentController {
         return doc
     }
     
-    override func makeDocument(for urlOrNil: URL?, withContentsOf contentsURL: URL, ofType typeName: String) throws -> NSDocument {
+    open override func makeDocument(for urlOrNil: URL?, withContentsOf contentsURL: URL, ofType typeName: String) throws -> NSDocument {
         let doc = try super.makeDocument(for: urlOrNil, withContentsOf: contentsURL, ofType: typeName)
         
         associateActiveContainer(to: doc)
@@ -27,7 +27,7 @@ class ContainedDocumentController<Container>: BaseDocumentController {
         return doc
     }
     
-    override func makeUntitledDocument(ofType typeName: String) throws -> NSDocument {
+    open override func makeUntitledDocument(ofType typeName: String) throws -> NSDocument {
         let doc = try super.makeUntitledDocument(ofType: typeName)
         
         associateActiveContainer(to: doc)

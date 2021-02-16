@@ -7,10 +7,10 @@
 
 import Cocoa
 
-class BaseDocumentController: NSDocumentController {
-    typealias OpenDocumentResult = Result<(NSDocument, Bool), Error>
+open class BaseDocumentController: NSDocumentController {
+    public typealias OpenDocumentResult = Result<(NSDocument, Bool), Error>
     
-    override func openDocument(withContentsOf url: URL, display displayDocument: Bool, completionHandler: @escaping (NSDocument?, Bool, Error?) -> Void) {
+    open override func openDocument(withContentsOf url: URL, display displayDocument: Bool, completionHandler: @escaping (NSDocument?, Bool, Error?) -> Void) {
         openDocument(withContentsOf: url, display: displayDocument) { result in
             switch result {
             case .failure(let error):
@@ -30,7 +30,7 @@ class BaseDocumentController: NSDocumentController {
         }
     }
     
-    override func reopenDocument(for urlOrNil: URL?, withContentsOf contentsURL: URL, display displayDocument: Bool, completionHandler: @escaping (NSDocument?, Bool, Error?) -> Void) {
+    open override func reopenDocument(for urlOrNil: URL?, withContentsOf contentsURL: URL, display displayDocument: Bool, completionHandler: @escaping (NSDocument?, Bool, Error?) -> Void) {
         reopenDocument(for: urlOrNil, withContentsOf: contentsURL, display: displayDocument) { result in
             switch result {
             case .failure(let error):
@@ -53,7 +53,7 @@ class BaseDocumentController: NSDocumentController {
 }
 
 extension BaseDocumentController.OpenDocumentResult {
-    init(_ document: NSDocument?, _ alreadyOpen: Bool, _ error: Error?) {
+    public init(_ document: NSDocument?, _ alreadyOpen: Bool, _ error: Error?) {
         switch (document, alreadyOpen, error) {
         case (let doc?, _, nil):
             self = .success((doc, alreadyOpen))
