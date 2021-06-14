@@ -12,7 +12,7 @@ PRODUCT_NAME = ContainedDocument
 PRODUCT_BUNDLE_IDENTIFIER = com.chimehq.ContainedDocument
 PRODUCT_MODULE_NAME = ContainedDocument
 CURRENT_PROJECT_VERSION = 1
-MARKETING_VERSION = 0.1
+MARKETING_VERSION = 0.1.0
 
 INFOPLIST_FILE = ContainedDocument/Info.plist
 MACH_O_TYPE = staticlib
