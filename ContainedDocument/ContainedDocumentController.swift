@@ -9,6 +9,10 @@
 import Cocoa
 
 open class ContainedDocumentController<Container>: BaseDocumentController {
+    /// The container currently being used to open/creat a document
+    ///
+    /// This is one-shot variable, used to hook into the NSDocument lifecycle at the
+    /// most convenient times. It should never survive longer than one operation.
     private var activeContainer: Container?
     
     open override func makeDocument(withContentsOf url: URL, ofType typeName: String) throws -> NSDocument {
@@ -39,24 +43,6 @@ open class ContainedDocumentController<Container>: BaseDocumentController {
         disassociateDocument(document)
 
         super.removeDocument(document)
-    }
-    
-    private func setActiveContainer(_ container: Container) {
-        self.activeContainer = container
-    }
-    
-    private func clearActiveContainer() {
-        self.activeContainer = nil
-    }
-    
-    private func associateActiveContainer(to document: NSDocument) {
-        guard let container = activeContainer else { return }
-        
-        associateDocument(document, to: container)
-        
-        // this is one-shot variable, used to hook into the NSDocument lifecycle at the
-        // most convenient times.
-        clearActiveContainer()
     }
     
     /// Called when a document is being associated to a container
@@ -93,16 +79,39 @@ open class ContainedDocumentController<Container>: BaseDocumentController {
     }
     
     open func openDocument(withContentsOf url: URL, in container: Container, display: Bool, completionHandler: @escaping (Result<(NSDocument, Bool), Error>) -> Void) {
-        self.setActiveContainer(container)
+        setActiveContainer(container)
         
         openDocument(withContentsOf: url, display: display) { (result) in
+            self.activeContainer = nil
             completionHandler(result)
         }
     }
     
     open func openUntitledDocumentAndDisplay(_ displayDocument: Bool, in container: Container) throws -> NSDocument {
         setActiveContainer(container)
-  
-        return try super.openUntitledDocumentAndDisplay(displayDocument)
+
+        let doc = try super.openUntitledDocumentAndDisplay(displayDocument)
+
+        self.activeContainer = nil
+
+        return doc
+    }
+}
+
+extension ContainedDocumentController {
+    private func setActiveContainer(_ container: Container) {
+        assert(activeContainer == nil)
+        self.activeContainer = container
+    }
+
+    private func associateActiveContainer(to document: NSDocument) {
+        guard let container = activeContainer else { return }
+
+        associateDocument(document, to: container)
+
+        // This is really just paranoia. But, it's not good at all
+        // if this value remains set for too long. Can corrupt state
+        // and leak.
+        self.activeContainer = nil
     }
 }
