@@ -82,21 +82,21 @@ open class ContainedDocumentController<Container>: BaseDocumentController {
         return nil
     }
     
-    /// Hook into ControllerRestorableDocument window restoration
+    /// Hook into ContainedDocument window restoration
     ///
     /// This is useful for encoding the window restoration state needed for
     /// restoring the document-container relationship. This only works for
-    /// `ControllerRestorableDocument` subclasses. And, if you do more state restoration
+    /// `ContainedDocument` subclasses. And, if you do more state restoration
     /// work in your subclass, make sure to call super there.
     open func encodeRestorableState(with coder: NSCoder, for document: NSDocument) {
     }
     
-    /// Hook into ControllerRestorableDocument window restoration
+    /// Hook into ContainedDocument window restoration
     ///
     /// This is useful for restoring the window restoration state. This happens
     /// very early in the `NSDocument` lifecycle, so the document-container
     /// relationship can be established before UI is created. This only works for
-    /// `ControllerRestorableDocument` subclasses. And, if you do more state restoration
+    /// `ContainedDocument` subclasses. And, if you do more state restoration
     /// work in your subclass, make sure to call super there.
     open func restoreState(with coder: NSCoder, for document: NSDocument) {
     }

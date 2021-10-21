@@ -3,7 +3,9 @@
 
 # ContainedDocument
 
-ContainedDocument allows you to nest `NSDocument` instances inside of abstract containers. These can be anything you need, including other NSDocument instances. This turns out to be a very tricky thing to do, and requires careful management of an `NSDocumentController` to make it possible.
+ContainedDocument allows you to nest `NSDocument` instances inside of abstract containers. These can be anything you need, including other `NSDocument` instances. This turns out to be a very tricky thing to do, and requires careful management of an `NSDocumentController` to make it possible.
+
+Supporting the full range of `NSDocument` operations and interactions is challenging. I was able to pull off many of them, but the coordination still requires subclassing both `NSDocument` and `NSDocumentController`. 
 
 ## Integration
 
@@ -38,9 +40,9 @@ open func restoreState(with coder: NSCoder, for document: NSDocument)
 // ...
 ```
 
-**ControllerRestorableDocument**
+**ContainedDocument**
 
-This is an optional `NSDocument` subclass that allows for tighter window restoration integration between `NSDocument` and `ContainedDocumentController`. Restoring your container relationships could be challenging without this mechanism.
+This is an `NSDocument` subclass that makes it possible to support document duplication and window restoration.
 
 ### Suggestions or Feedback
 

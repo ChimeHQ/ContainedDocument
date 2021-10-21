@@ -1,14 +1,6 @@
-//
-//  ContainedDocument.swift
-//  Edit
-//
-//  Created by Matthew Massicotte on 2021-02-15.
-//  Copyright © 2021 Chime Systems. All rights reserved.
-//
-
 import Cocoa
 
-open class ControllerRestorableDocument<Container>: NSDocument {
+open class ContainedDocument<Container>: NSDocument {
     private var documentController: ContainedDocumentController<Container>? {
         return NSDocumentController.shared as? ContainedDocumentController<Container>
     }
@@ -30,7 +22,7 @@ open class ControllerRestorableDocument<Container>: NSDocument {
     }
 
     open override func duplicate() throws -> NSDocument {
-        // have to hook in here, as there isn't another way to what
+        // have to hook in here, as there isn't another way to know what
         // document is being duplicated
         documentController?.duplicatingDocument(self)
 
