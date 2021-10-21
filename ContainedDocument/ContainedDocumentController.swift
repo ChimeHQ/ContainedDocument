@@ -44,36 +44,59 @@ open class ContainedDocumentController<Container>: BaseDocumentController {
 
         super.removeDocument(document)
     }
-    
+
+    func duplicatingDocument(_ document: NSDocument) {
+        let existingContainer = documentContainer(for: document)
+
+        if let container = existingContainer {
+            setActiveContainer(container)
+        }
+    }
+
+    override open func duplicateDocument(withContentsOf url: URL, copying duplicateByCopying: Bool, displayName displayNameOrNil: String?) throws -> NSDocument {
+        let newDoc = try super.duplicateDocument(withContentsOf: url, copying: duplicateByCopying, displayName: displayNameOrNil)
+
+        self.activeContainer = nil
+
+        return newDoc
+    }
+
     /// Called when a document is being associated to a container
     ///
     /// The default implemenation does nothing. Subclasses can use this to establish
     /// a relationship, if it is appropriate for the document/container type.
     open func associateDocument(_ document: NSDocument, to container: Container) {
     }
-    
+
     /// Called when a document is being removed.
     ///
     /// The default implemenation does nothing. Subclasses can use this to tear down
     /// a relationship, if it is appropriate for the document/container type.
     open func disassociateDocument(_ document: NSDocument) {
     }
+
+    /// Used to query the current container of a document.
+    ///
+    /// The default implemenation returns nil.
+    open func documentContainer(for document: NSDocument) -> Container? {
+        return nil
+    }
     
-    /// Hook into ContainedDocument window restoration
+    /// Hook into ControllerRestorableDocument window restoration
     ///
     /// This is useful for encoding the window restoration state needed for
     /// restoring the document-container relationship. This only works for
-    /// ContainedDocument subclasses. And, if you do more state restoration
+    /// `ControllerRestorableDocument` subclasses. And, if you do more state restoration
     /// work in your subclass, make sure to call super there.
     open func encodeRestorableState(with coder: NSCoder, for document: NSDocument) {
     }
     
-    /// Hook into ContainedDocument window restoration
+    /// Hook into ControllerRestorableDocument window restoration
     ///
     /// This is useful for restoring the window restoration state. This happens
-    /// very early in the NSDocument lifecycle, so the document-container
+    /// very early in the `NSDocument` lifecycle, so the document-container
     /// relationship can be established before UI is created. This only works for
-    /// ContainedDocument subclasses. And, if you do more state restoration
+    /// `ControllerRestorableDocument` subclasses. And, if you do more state restoration
     /// work in your subclass, make sure to call super there.
     open func restoreState(with coder: NSCoder, for document: NSDocument) {
     }

@@ -28,4 +28,12 @@ open class ControllerRestorableDocument<Container>: NSDocument {
 
         super.encodeRestorableState(with: coder)
     }
+
+    open override func duplicate() throws -> NSDocument {
+        // have to hook in here, as there isn't another way to what
+        // document is being duplicated
+        documentController?.duplicatingDocument(self)
+
+        return try super.duplicate()
+    }
 }
