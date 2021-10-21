@@ -29,11 +29,12 @@ dependencies: [
 
 **ContainedDocumentController**
 
-An `NSDocumentController` subclass that manages the `NSDocument` lifecycle and manages the relationship to your containers. It provides for potentially useful subclassing points if you need to further tweak the behavior.
+An `NSDocumentController` subclass that manages the `NSDocument` lifecycle and manages the relationship to your containers. To use it, you must override the three container-document association methods. Restorable state is supported, but is optional.
 
 ```swift
 open func associateDocument(_ document: NSDocument, to container: Container)
 open func disassociateDocument(_ document: NSDocument)
+open func documentContainer(for document: NSDocument) -> Container?
 
 open func encodeRestorableState(with coder: NSCoder, for document: NSDocument)
 open func restoreState(with coder: NSCoder, for document: NSDocument)
