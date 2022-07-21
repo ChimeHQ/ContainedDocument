@@ -53,7 +53,7 @@ open class BaseDocumentController: NSDocumentController {
 }
 
 extension BaseDocumentController.OpenDocumentResult {
-    public init(_ document: NSDocument?, _ alreadyOpen: Bool, _ error: Error?) {
+    init(_ document: NSDocument?, _ alreadyOpen: Bool, _ error: Error?) {
         switch (document, alreadyOpen, error) {
         case (let doc?, _, nil):
             self = .success((doc, alreadyOpen))

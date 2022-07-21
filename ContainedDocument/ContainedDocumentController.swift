@@ -109,7 +109,16 @@ open class ContainedDocumentController<Container>: BaseDocumentController {
             completionHandler(result)
         }
     }
-    
+
+    @available(macOS 10.15, *)
+    open func openDocument(withContentsOf url: URL, in container: Container, display: Bool) async throws -> (NSDocument, Bool) {
+        return try await withCheckedThrowingContinuation({ continuation in
+            openDocument(withContentsOf: url, in: container, display: display) { result in
+                continuation.resume(with: result)
+            }
+        })
+    }
+
     open func openUntitledDocumentAndDisplay(_ displayDocument: Bool, in container: Container) throws -> NSDocument {
         setActiveContainer(container)
 
