@@ -1,5 +1,5 @@
-[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg)](https://github.com/Carthage/Carthage)
-![](https://img.shields.io/badge/Swift-5.0-orange.svg)
+[![License][license badge]][license]
+[![Platforms][platforms badge]][platforms]
 
 # ContainedDocument
 
@@ -47,6 +47,12 @@ This is an `NSDocument` subclass that makes it possible to support document dupl
 
 ### Suggestions or Feedback
 
-We'd love to hear from you! Get in touch via [twitter](https://twitter.com/chimehq), an issue, or a pull request.
+We'd love to hear from you! Get in touch via an issue or pull request.
 
 Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
+
+[license]: https://opensource.org/licenses/BSD-3-Clause
+[license badge]: https://img.shields.io/github/license/ChimeHQ/ContainedDocument
+[platforms]: https://swiftpackageindex.com/ChimeHQ/ContainedDocument
+[platforms badge]: https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FChimeHQ%2FContainedDocument%2Fbadge%3Ftype%3Dplatforms
+
