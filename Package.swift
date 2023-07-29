@@ -1,17 +1,16 @@
-// swift-tools-version:5.0
-// The swift-tools-version declares the minimum version of Swift required to build this package.
+// swift-tools-version: 5.5
 
 import PackageDescription
 
 let package = Package(
     name: "ContainedDocument",
-    platforms: [.macOS("10.11")],
+	platforms: [.macOS(.v10_13)],
     products: [
         .library(name: "ContainedDocument", targets: ["ContainedDocument"]),
     ],
     dependencies: [],
     targets: [
-        .target(name: "ContainedDocument", dependencies: [], path: "ContainedDocument/"),
-        .testTarget(name: "ContainedDocumentTests", dependencies: ["ContainedDocument"], path: "ContainedDocumentTests/"),
+        .target(name: "ContainedDocument"),
+        .testTarget(name: "ContainedDocumentTests", dependencies: ["ContainedDocument"]),
     ]
 )

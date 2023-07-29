@@ -9,19 +9,9 @@ Supporting the full range of `NSDocument` operations and interactions is challen
 
 ## Integration
 
-Carthage:
-
-You can use [Carthage](https://github.com/Carthage/Carthage) to intall this as a static library.
-
-```
-github "ChimeHQ/ContainedDocument"
-```
-
-Swift Package Manager:
-
 ```swift
 dependencies: [
-    .package(url: "https://github.com/ChimeHQ/ContainedDocument.git")
+    .package(url: "https://github.com/ChimeHQ/ContainedDocument")
 ]
 ```
 
