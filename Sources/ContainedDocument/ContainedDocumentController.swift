@@ -1,15 +1,7 @@
-//
-//  ContainedDocumentController.swift
-//  Edit
-//
-//  Created by Matthew Massicotte on 2021-02-15.
-//  Copyright © 2021 Chime Systems. All rights reserved.
-//
-
-import Cocoa
+import AppKit
 
 open class ContainedDocumentController<Container>: BaseDocumentController {
-    /// The container currently being used to open/creat a document
+    /// The container currently being used to open/create a document
     ///
     /// This is one-shot variable, used to hook into the NSDocument lifecycle at the
     /// most convenient times. It should never survive longer than one operation.
