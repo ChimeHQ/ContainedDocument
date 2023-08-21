@@ -55,22 +55,26 @@ open class ContainedDocumentController<Container>: BaseDocumentController {
 
     /// Called when a document is being associated to a container
     ///
-    /// The default implemenation does nothing. Subclasses can use this to establish
+    /// The default implementation does nothing. Subclasses can use this to establish
     /// a relationship, if it is appropriate for the document/container type.
     open func associateDocument(_ document: NSDocument, to container: Container) {
+		print("warning: associateDocument not implemented in subclass")
     }
 
     /// Called when a document is being removed.
     ///
-    /// The default implemenation does nothing. Subclasses can use this to tear down
+    /// The default implementation does nothing. Subclasses can use this to tear down
     /// a relationship, if it is appropriate for the document/container type.
     open func disassociateDocument(_ document: NSDocument) {
+		print("warning: disassociateDocument not implemented in subclass")
     }
 
     /// Used to query the current container of a document.
     ///
-    /// The default implemenation returns nil.
+    /// The default implementation returns nil.
     open func documentContainer(for document: NSDocument) -> Container? {
+		print("warning: documentContainer not implemented in subclass")
+
         return nil
     }
     
