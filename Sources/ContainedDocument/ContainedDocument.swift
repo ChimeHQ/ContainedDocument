@@ -1,4 +1,4 @@
-import Cocoa
+import AppKit
 
 open class ContainedDocument<Container>: NSDocument {
     private var documentController: ContainedDocumentController<Container>? {

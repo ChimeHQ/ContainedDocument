@@ -1,11 +1,4 @@
-//
-//  BaseDocumentController.swift
-//  ContainedDocument
-//
-//  Created by Matthew Massicotte on 2021-02-16.
-//
-
-import Cocoa
+import AppKit
 
 open class BaseDocumentController: NSDocumentController {
     public typealias OpenDocumentResult = Result<(NSDocument, Bool), Error>
